@@ -25,12 +25,15 @@ class SpriteBatchLoadExample extends FlameGame {
       srcSize: spriteSize,
     );
 
-    final animation = boomSprite.createAnimation(row: 0, stepTime: 0.2);
+    for (double i = 0 ; i <=7 ; i++) {
+    final animation = boomSprite.createAnimation(row: i.round(), stepTime: 0.2);
     final boomComponent = SpriteAnimationComponent(
       animation: animation,
-      scale: Vector2(1, 1),
+      scale: Vector2(2, 2),
       size: spriteSize,
+      position: spriteSize * i,
     );
     add(boomComponent);
+    }
   }
 }
