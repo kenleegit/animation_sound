@@ -1,3 +1,4 @@
+import 'dart:js';
 import 'dart:math';
 
 import 'package:flame/components.dart';
@@ -16,29 +17,35 @@ void main() {
 
 class SpriteBatchLoadExample extends FlameGame {
   late SpriteSheet boomSprite;
+  final spriteSize = Vector2(128.0, 128.0);
+  final spriteNum = 8;
 
   @override
   Future<void> onLoad() async {
-    final spriteSize = Vector2(128.0, 128.0);
-    const spriteNum = 8;
     boomSprite = SpriteSheet(
       image: await images.load('boom.png'),
       srcSize: spriteSize,
     );
 
     for (double i = 0; i < spriteNum; i++) {
-      add(AnimatedBoom(
-        boomSprite: boomSprite,
-        atPosition: spriteSize * i,
-        spriteSize: spriteSize,
-        row: i.round(),
-        num: spriteNum,
-      ));
+      createBoom();
     }
+  }
+
+  void createBoom() {
+    add(AnimatedBoom(
+      boomSprite: boomSprite,
+      atPosition: Vector2(
+          Random().nextInt(200).toDouble(), Random().nextInt(400).toDouble()),
+      spriteSize: spriteSize,
+      row: 5,
+      num: spriteNum,
+    ));
   }
 }
 
-class AnimatedBoom extends SpriteAnimationComponent {
+class AnimatedBoom extends SpriteAnimationComponent
+    with HasGameRef<SpriteBatchLoadExample> {
   final SpriteSheet boomSprite;
   final Vector2 atPosition;
   final Vector2 spriteSize;
@@ -60,7 +67,7 @@ class AnimatedBoom extends SpriteAnimationComponent {
     scale = Vector2(2, 2);
     position = atPosition;
     animation = boomSprite.createAnimation(row: row, stepTime: 0.2);
-    lifeTime = Timer(num * 0.2);
+    lifeTime = Timer(num * 0.2 + Random().nextDouble() * 3);
   }
 
   @override
@@ -69,6 +76,7 @@ class AnimatedBoom extends SpriteAnimationComponent {
     lifeTime.update(dt);
     if (lifeTime.finished) {
       removeFromParent();
+      gameRef.createBoom();
     }
   }
 }
