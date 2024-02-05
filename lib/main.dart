@@ -1,4 +1,3 @@
-import 'dart:js';
 import 'dart:math';
 
 import 'package:flame/components.dart';
@@ -8,14 +7,14 @@ import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  final game = SpriteBatchLoadExample();
+  final game = AnimationExample();
   WidgetsFlutterBinding.ensureInitialized();
   Flame.device.setPortrait();
   Flame.device.fullScreen();
   runApp(GameWidget(game: game));
 }
 
-class SpriteBatchLoadExample extends FlameGame {
+class AnimationExample extends FlameGame {
   late SpriteSheet boomSprite;
   final spriteSize = Vector2(128.0, 128.0);
   final spriteNum = 8;
@@ -45,7 +44,7 @@ class SpriteBatchLoadExample extends FlameGame {
 }
 
 class AnimatedBoom extends SpriteAnimationComponent
-    with HasGameRef<SpriteBatchLoadExample> {
+    with HasGameRef<AnimationExample> {
   final SpriteSheet boomSprite;
   final Vector2 atPosition;
   final Vector2 spriteSize;
