@@ -5,6 +5,8 @@
 A flame-based flutter app, animation and sound effect test bed.
 
 ## Attribution
+Boom sprite sheet
+https://opengameart.org/content/explosion-sheet
 
 Fire button
 https://pixabay.com/illustrations/red-button-button-icon-back-web-1426817/
