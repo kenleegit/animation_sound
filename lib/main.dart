@@ -34,10 +34,10 @@ class AnimationExample extends FlameGame {
   void createBoom() {
     add(AnimatedBoom(
       boomSprite: boomSprite,
-      atPosition: Vector2(
-          Random().nextInt(200).toDouble(), Random().nextInt(400).toDouble()),
+      atPosition: Vector2(Random().nextInt(size.x.round()).toDouble(),
+          Random().nextInt(size.y.round()).toDouble()),
       spriteSize: spriteSize,
-      row: 5,
+      row: Random().nextInt(8),
       num: spriteNum,
     ));
   }
