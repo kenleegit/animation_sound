@@ -21,6 +21,8 @@ class AnimationExample extends Forge2DGame {
   final spriteSize = Vector2(128.0, 128.0);
   final spriteNum = 8;
 
+  AnimationExample() : super(gravity: Vector2(0, 15));
+
   @override
   Future<void> onLoad() async {
     boomSprite = SpriteSheet(
@@ -34,14 +36,15 @@ class AnimationExample extends Forge2DGame {
   }
 
   void createBoom() {
-    add(AnimatedBoom(
+    add(FallingObj(
+        content: AnimatedBoom(
       boomSprite: boomSprite,
       atPosition: Vector2(Random().nextInt(size.x.round()).toDouble(),
           Random().nextInt(size.y.round()).toDouble()),
       spriteSize: spriteSize,
       row: Random().nextInt(8),
       num: spriteNum,
-    ));
+    )));
   }
 }
 
@@ -80,5 +83,22 @@ class AnimatedBoom extends SpriteAnimationComponent
       removeFromParent();
       gameRef.createBoom();
     }
+  }
+}
+
+class FallingObj extends BodyComponent {
+  final SpriteAnimationComponent content;
+
+  FallingObj({required this.content})
+      : super(
+            bodyDef: BodyDef(
+          angularDamping: 0.8,
+          type: BodyType.dynamic,
+        ));
+  @override
+  Future<void> onLoad() async {
+    super.onLoad();
+
+    add(content);
   }
 }
