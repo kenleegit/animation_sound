@@ -6,6 +6,7 @@ import 'package:flame/game.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 import 'package:flame_audio/flame_audio.dart';
+import 'package:flame_forge2d/flame_forge2d.dart' hide Timer;
 
 void main() {
   final game = AnimationExample();
@@ -15,7 +16,7 @@ void main() {
   runApp(GameWidget(game: game));
 }
 
-class AnimationExample extends FlameGame {
+class AnimationExample extends Forge2DGame {
   late SpriteSheet boomSprite;
   final spriteSize = Vector2(128.0, 128.0);
   final spriteNum = 8;
