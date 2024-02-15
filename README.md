@@ -3,6 +3,7 @@
 ## Getting Started
 
 A flame-based flutter app, animation and sound effect test bed.
+Load a sprite sheet. Turn it to animation. Instantiate somewhere on the screen, over and over.
 
 ## Attribution
 Boom sprite sheet
