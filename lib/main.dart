@@ -5,6 +5,7 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
+import 'package:flame_audio/flame_audio.dart';
 
 void main() {
   final game = AnimationExample();
@@ -66,7 +67,8 @@ class AnimatedBoom extends SpriteAnimationComponent
     scale = Vector2(2, 2);
     position = atPosition;
     animation = boomSprite.createAnimation(row: row, stepTime: 0.2);
-    lifeTime = Timer(num * 0.2 + Random().nextDouble() * 3);
+    lifeTime = Timer(num * 0.2 + Random().nextDouble() * 10);
+    FlameAudio.play('455530__befig__2019explosion.mp3');
   }
 
   @override
